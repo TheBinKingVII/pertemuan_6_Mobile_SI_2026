@@ -1,21 +1,23 @@
 # Modul 5 - HTTP Request (Praktikum Teknologi dan Pemrograman Mobile)
 
-Project ini berisi hasil langkah praktikum Modul 5: mengganti sumber data yang awalnya statis menjadi **dinamis** menggunakan API [DummyJSON](https://dummyjson.com/products).
+Project ini adalah lanjutan dari Modul 4 (`modul_4_prak_mobile`). Tujuannya: mengganti sumber data yang awalnya statis menjadi **dinamis** menggunakan API [DummyJSON](https://dummyjson.com/products).
 
-Project dasar berasal dari Modul 4 (`modul_4_prak_mobile`). Di sini ditampilkan hasil akhirnya, dan setiap langkah dijelaskan di bawah agar bisa diikuti ulang.
+Login: username `budi123`, password `password123`.
 
 ## Struktur Project
 
 ```
 lib/
 ├── main.dart
+├── login.dart
+├── root.dart              # bottom navigation (Beranda / Profil)
+├── profile.dart
+├── home.dart              # list produk dari API
+├── detail.dart            # detail satu produk dari API
 ├── api/
 │   └── api_service.dart   # endpoint + function pengambilan data
-├── models/
-│   └── data.dart          # class Product + factory fromJson()
-└── screens/
-    ├── home.dart          # list produk
-    └── detail.dart        # detail satu produk
+└── models/
+    └── data.dart          # class User + class Product (fromJson)
 ```
 
 ## Cara Menjalankan
@@ -25,7 +27,7 @@ flutter pub get
 flutter run
 ```
 
-Jika folder platform (`android/`, `ios/`, dll.) belum ada, jalankan dulu `flutter create .` di folder project ini.
+Untuk build release di Android, tambahkan `<uses-permission android:name="android.permission.INTERNET"/>` di `android/app/src/main/AndroidManifest.xml` (di luar tag `<application>`).
 
 ---
 
@@ -412,5 +414,6 @@ Logika konversi sebaiknya menjadi urusan class `Product`, bukan `ApiService`.
 ## Catatan
 
 - Kode di folder `lib/` adalah **hasil akhir** (setelah langkah G).
-- `home.dart` dan `detail.dart` di project ini dibuat sederhana (tanpa bottom navigation "Beranda/Profil" dari Modul 4). Jika kamu memakai project Modul 4, cukup salin bagian yang berubah.
+- Project ini dikembangkan dari Modul 4 (login, bottom navigation, halaman profil tetap dipertahankan). `HomePage` tetap menerima parameter `nama`, sehingga di `_HomePageState` dipanggil lewat `widget.nama`.
+- Class `Product` dan data dummy dari Modul 4 sudah dihapus dan diganti model baru; class `User` tetap dipakai oleh halaman login.
 - Tugas praktikum (API Dattebayo) **tidak** dimasukkan ke project ini.
